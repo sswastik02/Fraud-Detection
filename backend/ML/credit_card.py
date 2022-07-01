@@ -11,14 +11,13 @@ import pickle
 import sys, os
 
 MODEL_SAV_FILE = 'credit-card.sav'
-CSV_FILE = 'creditcard-fraud.csv'
 
-def create_model():
-    df = pd.read_csv(os.path.join(sys.path[0],CSV_FILE))
+def create_model(csv_file):
+    df = pd.read_csv(csv_file)
     dataset = df.values
     print(df.shape)
     
-    X = dataset[:,0:10] # Catergorical Data
+    X = dataset[:,1:10] # Catergorical Data
     Y = dataset[:,10]  # Class Data
 
     min_max_scaler = preprocessing.MinMaxScaler()
@@ -33,7 +32,7 @@ def create_model():
 
     # model architecture
     model = Sequential([
-        Dense(32, activation='relu', input_shape=(10,)),
+        Dense(32, activation='relu', input_shape=(9,)),
         Dense(32, activation='relu'),
         Dense(1, activation='sigmoid'),
     ])
@@ -63,7 +62,6 @@ def create_model():
 def predict_fraud():
     loaded_model = pickle.load(open(os.path.join(sys.path[0],MODEL_SAV_FILE),'rb'))
     prediction = loaded_model.predict([[
-        0.64143747, 
         0.2034085 , 
         0.0911139 , 
         0. , 
@@ -77,15 +75,26 @@ def predict_fraud():
 
     return prediction
 
+def get_csv():
+    if len(sys.argv) > 1 and sys.argv[1] != "":
+        if(os.path.exists(sys.argv[1])):
+            return sys.argv[1]
+        print("",sys.argv[1], "not found")
+        sys.exit(0)
+    print("","Usage : python3 file.py path/to/csv")
+    sys.exit(0)
 
 def main():
     if not os.path.exists(os.path.join(sys.path[0],MODEL_SAV_FILE)):
-        create_model()
+        print(MODEL_SAV_FILE,"not found")
+        CSV_FILE = get_csv()
+        create_model(CSV_FILE)
     else :
-        op = input('\n\n credit card model already created\n Would you like to recreate (y/n)?')
+        op = input('\n\n credit card model already created\n Would you like to recreate ? (y/n): ')
         if op == 'y':
-            create_model()
-    print(predict_fraud())
+            CSV_FILE = get_csv()
+            create_model(CSV_FILE)
+    print("Prediction:",predict_fraud())
 
 if __name__ == "__main__":
     main()
