@@ -1,4 +1,4 @@
-from credit_card import CreditCard
+from models.creditcard import CreditCard
 
 import os, sys
 

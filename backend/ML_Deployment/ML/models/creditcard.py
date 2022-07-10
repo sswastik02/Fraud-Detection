@@ -10,12 +10,18 @@ from keras.layers import Dense
 from scikeras.wrappers import KerasClassifier
 
 import joblib
-import sys, os, environ
+import sys, os
+
+fpath = os.path.join(os.path.dirname(__file__), '..')
+sys.path.append(fpath)
+# Adding access to super parent directory
+
+from paths import PIPES_DIR
 
 class CreditCard:
 
-    env = environ.Env()
-    PIPE_SAV_FILE = os.path.join(env.str("ML_SAVE_DIR"),'credit-card.sav')
+    
+    PIPE_SAV_FILE = os.path.join(PIPES_DIR,"creditcard.pipe")
     def get_model(self):
         # model architecture
         model = Sequential([

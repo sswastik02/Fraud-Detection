@@ -14,19 +14,22 @@ git clone https://github.com/sswastik02/Fraud-Detection.git
 
 You need `virtualenv` installed for this
 ```sh
+# in the root of project
 virtualenv -v venv
 source venv/bin/activate
 pip3 install -r requirements.txt
 
 ```
 
-### <u>Environment Variables</u>
-You need to define a `.env` file in the `backend` folder
+## ML Deployment
+It contains the django application which hosts the machine learning models
+
+#### <u>Environment Variables</u>
+You need to define a `.env` file in the `backend/ML_Deployment` folder
 
 ```
 SECRET_KEY=your-secret-key
 DEBUG=True # False for production
-ML_SAVE_DIR=ML # Dir where the pipes will be saved after fitting
 
 ```
 
@@ -34,22 +37,13 @@ an example can be found in `.env.example`
 
 #### <u>ML</u>
 
-You can either build a joblib file from the jupyter notebook and include it in `backend/ML/` or use the script present in `backend/ML/` to train and create joblib file using a csv
+You can either build a joblib file from the jupyter notebook and include it in `backend/ML_Deployment/ML/` or use the script present in `backend/ML_Deployment/ML/` to train and create joblib file using a csv
 
-### <u>Server</u>
-
-```sh
-cd backend
-# backend does not commit data to a database
-
-# optional create admin
-python3 manage.py createsuperuser
-
-```
 
 ### Run
 
 ```sh
+cd backend/ML_Deployment
 python3 manage.py runserver
 
 ```

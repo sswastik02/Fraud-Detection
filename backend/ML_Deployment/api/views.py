@@ -3,7 +3,8 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK,HTTP_500_INTERNAL_SERVER_ERROR
 
 from .serialzers import TransactionSerialzier
-from ML.credit_card import CreditCard
+
+from ML.models.creditcard import CreditCard
 
 class TransactionDetection(APIView):
     def post(self,request):
