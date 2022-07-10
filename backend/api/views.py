@@ -1,20 +1,27 @@
-from django.shortcuts import render
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.status import HTTP_200_OK,HTTP_500_INTERNAL_SERVER_ERROR
 
 from .serialzers import TransactionSerialzier
-from .models import Transaction
-# Create your views here.
-class TransactionListCreateAPIView(ListCreateAPIView):
-    """
-    (GET|POST) /api/transactions/
-    """
-    queryset = Transaction.objects.all()
-    serializer_class = TransactionSerialzier
+from ML.credit_card import CreditCard
 
-class TransactionRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
-    """
-    (GET|PUT|PATCH|DELETE) /api/transactions/<str:uuid>
-    """
-    queryset = Transaction.objects.all()
-    serializer_class = TransactionSerialzier
-    lookup_field = "uuid"
+class TransactionDetection(APIView):
+    def post(self,request):
+        transaction_serializer = TransactionSerialzier(data=request.data)
+        if transaction_serializer.is_valid(raise_exception=True):
+            c = CreditCard()
+            try:
+                result = c.predict(request.data)
+                return Response(
+                    {
+                        "fraud": result[0] == 1
+                    },
+                    status= HTTP_200_OK,
+                )
+            except:
+                return Response(
+                    {
+                        "error":"could not process request"
+                    },
+                    status=HTTP_500_INTERNAL_SERVER_ERROR,
+                )

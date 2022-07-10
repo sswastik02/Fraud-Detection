@@ -10,12 +10,12 @@ from keras.layers import Dense
 from scikeras.wrappers import KerasClassifier
 
 import joblib
-import sys, os
+import sys, os, environ
 
 class CreditCard:
 
-    PIPE_SAV_FILE = 'credit-card.sav'
-
+    env = environ.Env()
+    PIPE_SAV_FILE = os.path.join(env.str("ML_SAVE_DIR"),'credit-card.sav')
     def get_model(self):
         # model architecture
         model = Sequential([
@@ -107,8 +107,25 @@ class CreditCard:
 
         return loaded_pipe.score(X_test,Y_test)
 
+    def transaction_data_to_list(self,data):
+        data = [
+            data["avg_amount_days"],
+            data["amount"],
+            1 if data["is_declined"] else 0,
+            data["number_declined_days"],
+            1 if data["foreign_transaction"] else 0,
+            1 if data["high_risk_countries"] else 0,
+            data["daily_chbk_avg_amt"],
+            data["sixm_avg_chbk_amt"],
+            data["sixm_chbk_freq"],
+        ]
+        return data
 
     def predict(self,data):
+        if type(data) != type([]):
+            if type(data) != type(dict()):
+                raise "Invalid data"
+            data = self.transaction_data_to_list(data)
         loaded_pipe = joblib.load(os.path.join(sys.path[0],self.PIPE_SAV_FILE))
         prediction = loaded_pipe.predict([data])
 

@@ -20,16 +20,27 @@ pip3 install -r requirements.txt
 
 ```
 
+### <u>Environment Variables</u>
+You need to define a `.env` file in the `backend` folder
+
+```
+SECRET_KEY=your-secret-key
+DEBUG=True # False for production
+ML_SAVE_DIR=ML # Dir where the pipes will be saved after fitting
+
+```
+
+an example can be found in `.env.example`
+
 #### <u>ML</u>
 
-You can either build a pickle file from the jupyter notebook and include it in `backend/ML/` or use the script present in `backend/ML` to train and create pickle file using a csv
+You can either build a joblib file from the jupyter notebook and include it in `backend/ML/` or use the script present in `backend/ML/` to train and create joblib file using a csv
 
 ### <u>Server</u>
 
 ```sh
 cd backend
-python3 manage.py makemigrations
-python3 manage.py migrate
+# backend does not commit data to a database
 
 # optional create admin
 python3 manage.py createsuperuser
