@@ -2,13 +2,13 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK,HTTP_500_INTERNAL_SERVER_ERROR
 
-from .serialzers import TransactionSerialzier
+from .serialzers import TransactionSerializer
 
 from ML.models.creditcard import CreditCard
 
 class TransactionDetection(APIView):
     def post(self,request):
-        transaction_serializer = TransactionSerialzier(data=request.data)
+        transaction_serializer = TransactionSerializer(data=request.data)
         if transaction_serializer.is_valid(raise_exception=True):
             c = CreditCard()
             try:
