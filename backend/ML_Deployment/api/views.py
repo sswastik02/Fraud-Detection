@@ -2,14 +2,16 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK,HTTP_500_INTERNAL_SERVER_ERROR
 
-from .serialzers import TransactionSerializer
+from .serialzers import PhishingSerializer, TransactionSerializer
 
 from ML.models.creditcard import CreditCard
+from ML.models.phishing_site import PhishingSite
+from ML.models.phishing_url import PhishingURL
 
 class TransactionDetection(APIView):
     def post(self,request):
-        transaction_serializer = TransactionSerializer(data=request.data)
-        if transaction_serializer.is_valid(raise_exception=True):
+        serializer = TransactionSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
             c = CreditCard()
             try:
                 result = c.predict(request.data)
@@ -26,3 +28,45 @@ class TransactionDetection(APIView):
                     },
                     status=HTTP_500_INTERNAL_SERVER_ERROR,
                 )
+
+class PhishingSiteDetection(APIView):
+    def post(self,request):
+        serializer = PhishingSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        p = PhishingSite()
+        try:
+            result = p.predict(request.data.get('url'))
+            return Response(
+                {
+                    "phishing":result[0] == 1
+                },
+                status = HTTP_200_OK
+            )
+        except:
+             return Response(
+                    {
+                        "error":"could not process request"
+                    },
+                    status=HTTP_500_INTERNAL_SERVER_ERROR,
+             )
+
+class PhishingUrlDetection(APIView):
+    def post(self,request):
+        serializer = PhishingSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        p = PhishingURL()
+        try:
+            result = p.predict(request.data.get('url'))
+            return Response(
+                {
+                    "phishing":result[0] == 1
+                },
+                status = HTTP_200_OK
+            )
+        except:
+             return Response(
+                    {
+                        "error":"could not process request"
+                    },
+                    status=HTTP_500_INTERNAL_SERVER_ERROR,
+             )
