@@ -2,6 +2,7 @@
 # Backup files # 
 *.bak 
 
+client/node_modules
 
 # Python # 
 *.py[cod] 
