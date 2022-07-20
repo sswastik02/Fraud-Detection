@@ -17,6 +17,7 @@ sys.path.append(fpath)
 # Adding access to super parent directory
 
 from paths import PIPES_DIR
+from helpers.creditcard.transac_to_features import transaction_data_to_features
 
 class CreditCard:
 
@@ -42,7 +43,6 @@ class CreditCard:
     def get_dataset(self,csv_file):
         df = pd.read_csv(csv_file)
         dataset = df.values
-        print(df.shape)
         
         X = dataset[:,1:10] # Catergorical Data
         Y = dataset[:,10]  # Class Data
@@ -85,13 +85,13 @@ class CreditCard:
 
         # pipeline definition
         pipe = Pipeline([
-            ('scaler', preprocessing.FunctionTransformer(scaler.transform)),
+            ('scaler', preprocessing.MinMaxScaler()),
             ('clf',clf),
         ])
 
         
         # fit model
-        pipe.fit(
+        pipe = pipe.fit(
             X_train,
             Y_train,
             clf__validation_data=(X_val, Y_val) # (model_name_in_pipeline)__validation_data
@@ -101,11 +101,11 @@ class CreditCard:
         print(pipe.score(X_test, Y_test))
 
         # save pipe
-        joblib.dump(pipe,os.path.join(sys.path[0],self.PIPE_SAV_FILE))
+        joblib.dump(pipe,self.PIPE_SAV_FILE)
 
 
     def evaluate(self,csv_file):
-        loaded_pipe = joblib.load(os.path.join(sys.path[0],self.PIPE_SAV_FILE))
+        loaded_pipe = joblib.load(self.PIPE_SAV_FILE)
         dataset = self.get_dataset(csv_file)
         scaler = self.get_scaler(dataset)
         processed_dataset = self.process_dataset(dataset,scaler)
@@ -113,26 +113,12 @@ class CreditCard:
 
         return loaded_pipe.score(X_test,Y_test)
 
-    def transaction_data_to_list(self,data):
-        data = [
-            data["avg_amount_days"],
-            data["amount"],
-            1 if data["is_declined"] else 0,
-            data["number_declined_days"],
-            1 if data["foreign_transaction"] else 0,
-            1 if data["high_risk_countries"] else 0,
-            data["daily_chbk_avg_amt"],
-            data["sixm_avg_chbk_amt"],
-            data["sixm_chbk_freq"],
-        ]
-        return data
-
     def predict(self,data):
         if type(data) != type([]):
             if type(data) != type(dict()):
                 raise "Invalid data"
-            data = self.transaction_data_to_list(data)
-        loaded_pipe = joblib.load(os.path.join(sys.path[0],self.PIPE_SAV_FILE))
+            data = transaction_data_to_features(data)
+        loaded_pipe = joblib.load(os.path.join(self.PIPE_SAV_FILE))
         prediction = loaded_pipe.predict([data])
 
         return prediction

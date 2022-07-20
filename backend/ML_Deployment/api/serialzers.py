@@ -13,3 +13,6 @@ class TransactionSerializer(serializers.Serializer):
     daily_chbk_avg_amt = serializers.DecimalField(max_digits=10,decimal_places=2)
     sixm_avg_chbk_amt = serializers.DecimalField(max_digits=10,decimal_places=2)
     sixm_chbk_freq = serializers.DecimalField(max_digits=10,decimal_places=2)
+
+class PhishingSerializer(serializers.Serializer):
+    url = serializers.URLField()
