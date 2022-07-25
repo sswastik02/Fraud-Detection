@@ -42,7 +42,7 @@ function EthProvider({ children }) {
   useEffect(() => {
     const tryInit = async () => {
       try {
-        const artifact = require("../../contracts/TodoList.json");
+        const artifact = require("../../contracts/Transactions.json");
         init(artifact);
       } catch (err) {
         console.error(err);
