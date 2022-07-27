@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 // Components
 import Navbar from './components/Navbar'
 import SideDrawer from './components/SideDrawer'
+import BackDrop from './components/Backdrop'
 
 //screens
 import HomeScreen from './screens/HomeScreen'
@@ -27,7 +28,7 @@ function App() {
     <Router>
     <Navbar click={() => setSideToggle(true)} />
     <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
-    <Backdrop show={sideToggle} click={() => setSideToggle(false)} />
+    <BackDrop show={sideToggle} click={() => setSideToggle(false)} />
 
     <main className="app">
       <Switch>
