@@ -1,21 +1,20 @@
-import { EthProvider } from "./contexts/EthContext";
-import Intro from "./components/Intro/";
-import Setup from "./components/Setup";
-import Demo from "./components/Demo";
-import Footer from "./components/Footer";
-import "./App.css";
-import NavbarNew from "./components/frontend/Navbar";
-import ContractBtns from "./components/addTransaction"
+import './App.css'
+import {useEffect, useState} from 'react'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+
+// Components
+import Navbar from './components/Navbar'
+
+
 function App() {
+  const [sideToggle, setSideToggle] = useState(false)
   return (
-    <EthProvider>
-      <div id="App" >
-        
-          <NavbarNew/>
-          <ContractBtns/>
-        
-      </div>
-    </EthProvider>
-  );
+    <Router>
+      <Navbar click={() => setSideToggle(true)} />
+    </Router>
+  )
 }
-export default App;
+
+export default App
+
+
