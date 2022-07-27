@@ -5,13 +5,35 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 // Components
 import Navbar from './components/Navbar'
 
+//screens
+import SignUp from './screens/SignUp'
+import SignIn from './screens/SignIn'
+import {useDispatch} from 'react-redux'
+import {fetchCart} from './redux/actions/cartActions'
+import {setUserDeatils} from './redux/actions/userAction'
 
 function App() {
   const [sideToggle, setSideToggle] = useState(false)
+  // fetchCart
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchCart())
+    dispatch(setUserDeatils())
+  }, [dispatch])
+
   return (
     <Router>
-      <Navbar click={() => setSideToggle(true)} />
-    </Router>
+    <Navbar click={() => setSideToggle(true)} />
+    <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
+    <Backdrop show={sideToggle} click={() => setSideToggle(false)} />
+
+    <main className="app">
+      <Switch>
+        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/signin" component={SignIn} />
+      </Switch>
+    </main>
+  </Router>
   )
 }
 
