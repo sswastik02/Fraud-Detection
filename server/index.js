@@ -2,7 +2,7 @@ require('dotenv').config()
 const mongoose = require('mongoose')
 var http = require('http')
 var express = require('express')
-const port = 3000
+const port = 5000
 var hostname = 'locahost'
 var logger = require('morgan')
 var app = express()
