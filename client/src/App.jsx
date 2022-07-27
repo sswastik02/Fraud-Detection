@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Navbar from './components/Navbar'
 
 //screens
+import HomeScreen from './screens/HomeScreen'
 import SignUp from './screens/SignUp'
 import SignIn from './screens/SignIn'
 import {useDispatch} from 'react-redux'
@@ -29,6 +30,7 @@ function App() {
 
     <main className="app">
       <Switch>
+        <Route exact path = "/" component={HomeScreen}/>
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/signin" component={SignIn} />
       </Switch>
