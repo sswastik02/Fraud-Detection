@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_api_key',
     'api',
+    'keys'
 ]
 
 MIDDLEWARE = [
@@ -84,6 +85,7 @@ WSGI_APPLICATION = 'FraudDetectionsAPI.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
+        'NAME':'Djongo-Test',
         'CLIENT':{
             'host': env.str('DATABASE_URL'),
         }
@@ -135,6 +137,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework_api_key.permissions.HasAPIKey",
+        "keys.permissions.HasAPIKey",
     ]
 }
