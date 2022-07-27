@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 // Components
 import Navbar from './components/Navbar'
+import SideDrawer from './components/SideDrawer'
 
 //screens
 import HomeScreen from './screens/HomeScreen'
