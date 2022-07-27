@@ -4,12 +4,7 @@ const productData = require('./data/products')
 const {connectDB} = require('./config/db')
 const Product = require('./models/Product')
 
-mongoose.connect(url,{useNewUrlParser: true, useUnifiedTopology: true})
- .then((result)=>
-    server.listen((port),function(){
-        console.log(`Server started at http://localhost:${port}`)
-    })
-  )
+connectDB()
 
 const importData = async () => {
   try {

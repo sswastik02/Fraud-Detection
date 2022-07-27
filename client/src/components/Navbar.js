@@ -2,8 +2,8 @@ import './Navbar.css'
 import {Link, useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {useMemo} from 'react'
-import {logout} from '../../../../CopyFD/frontend/src/utils/localstorage'
-import {setInitialState} from '../../../../CopyFD/frontend/src/redux/actions/userAction'
+import {logout} from '../utils/localstorage'
+import {setInitialState} from '../redux/actions/userAction'
 
 const Navbar = ({click}) => {
   const cart = useSelector(state => state.cart)
