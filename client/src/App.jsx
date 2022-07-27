@@ -9,6 +9,7 @@ import BackDrop from './components/Backdrop'
 
 //screens
 import HomeScreen from './screens/HomeScreen'
+import ProductScreen from './screens/ProductScreen'
 import SignUp from './screens/SignUp'
 import SignIn from './screens/SignIn'
 import {useDispatch} from 'react-redux'
@@ -33,6 +34,7 @@ function App() {
     <main className="app">
       <Switch>
         <Route exact path = "/" component={HomeScreen}/>
+        <Route exact path="/product/:id" component={ProductScreen} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/signin" component={SignIn} />
       </Switch>
