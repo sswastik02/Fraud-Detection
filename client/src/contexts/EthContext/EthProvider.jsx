@@ -22,13 +22,14 @@ function EthProvider({ children }) {
         try {
           address = artifact.networks[networkID].address;
           contract = new web3.eth.Contract(abi, address);
-          await contract.methods.count().call()
-        .then((result)=>{
-            console.log(result)
-        })
-        .catch((err)=>{
-          console.log(err)
-        })
+          console.log(contract)
+        //   await contract.methods.count().call()
+        // .then((result)=>{
+        //     console.log(result)
+        // })
+        // .catch((err)=>{
+        //   console.log(err)
+        // })
         } catch (err) {
           console.error(err);
         }
