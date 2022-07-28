@@ -13,6 +13,8 @@ import ProductScreen from './screens/ProductScreen'
 import CartScreen from './screens/CartScreen'
 import SignUp from './screens/SignUp'
 import SignIn from './screens/SignIn'
+import Checkout from './screens/CheckoutScreen'
+import Aadhar from './screens/AadharScreen'
 import {useDispatch} from 'react-redux'
 import {fetchCart} from './redux/actions/cartActions'
 import {setUserDeatils} from './redux/actions/userAction'
@@ -39,6 +41,8 @@ function App() {
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/cart" component={CartScreen} />
         <Route exact path="/signin" component={SignIn} />
+         <Route exact path="/checkout" component={Checkout}/>
+         <Route exact path="/aadhar" component={Aadhar}/>
       </Switch>
     </main>
   </Router>

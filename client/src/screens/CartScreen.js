@@ -50,7 +50,7 @@ const CartScreen = () => {
                 Your Cart Is Empty <Link to="/">Go Back</Link>
               </div>
             ) : (
-              cartItems.map(item => (
+              cartItems.map((item) => (
                 <CartItem
                   key={item.product}
                   item={item}
@@ -67,12 +67,19 @@ const CartScreen = () => {
               <p>${getCartSubTotal()}</p>
             </div>
             <div>
-              <button>Proceed To Checkout</button>
+              <button>
+                <Link to="/checkout"> Proceed To Checkout</Link>
+              </button>
+            </div>
+            <div>
+              <button>
+                <Link to="/aadhar"> upload aadhar for student discount</Link>
+              </button>
             </div>
           </div>
         </div>
       </>
-    )
+    );
 }
 
 export default CartScreen
