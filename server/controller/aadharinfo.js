@@ -10,19 +10,24 @@ cloudinary.config({
 const getAadharInfo = async (req, res) => {
     console.log('helloo')
   try {
+   
     // const form = new Formidable();
       const fileStr = req.body.body;
+      const image= JSON.parse(fileStr)
+      console.log("filStr      " + image.data)
       // const uploadResponse = await cloudinary.uploader.upload(fileStr, {
       //     upload_preset: 'dev_setups',
       // });
       // console.log(uploadResponse);
        // res.json({ msg: 'yaya' });
-        const uploadResponse = await cloudinary.uploader.upload(fileStr ,
+        const uploadResponse = await cloudinary.uploader.upload(image.data ,
         result => {
             if (result) {
                 userData.findById(req.params.id)
                 .then((user) => {
                     user.aadharURL = result.url;
+                    console.log(user.email)
+                    console.log(result.url)
                     console.log(user.aadharURL)
                     user.save()  
                     .then((user) =>{
