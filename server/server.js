@@ -3,6 +3,7 @@ const express = require('express')
 const productRoutes = require('./routes/productRoutes')
 const userRoutes = require('./routes/userRoutes')
 const cartRoutes = require('./routes/cartRoutes')
+const userinfoRoutes = require('./routes/userinfoRoutes')
 const {connectDB} = require('./config/db')
 const cors = require('cors')
 
@@ -20,6 +21,6 @@ app.get('/', (req, res) => {
 app.use('/api/products', productRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/cart', cartRoutes)
-
-const PORT = process.env.PORT || 5000
+app.use('/api/userinfo', userinfoRoutes )
+const PORT = process.env.PORT || 5001
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
