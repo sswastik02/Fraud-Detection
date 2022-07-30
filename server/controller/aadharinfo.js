@@ -9,7 +9,7 @@ cloudinary.config({
 const getAadharInfo = async (req, res) => {
     console.log('helloo')
   try {
-      const fileStr = req.body.fileStr;
+      const fileStr = req.body.body;
       // const uploadResponse = await cloudinary.uploader.upload(fileStr, {
       //     upload_preset: 'dev_setups',
       // });
@@ -35,7 +35,7 @@ const getAadharInfo = async (req, res) => {
     }
     catch (err) {
     console.log(err)
-    sendResponseError(500, `Error ${err}`, res)
+   // sendResponseError(500, `Error ${err}`, res)
   }
 }
 

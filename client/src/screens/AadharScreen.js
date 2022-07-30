@@ -48,10 +48,10 @@ function Aadhar() {
     };
 
     const uploadImage = async (base64EncodedImage) => {
-      console.log(base64EncodedImage);
+    
         try {
-            await fetch(`/api/aadharinfo/${uid}`, {
-                method: 'PUT',
+            axios.put(`http://localhost:5000/api/aadharinfo/${uid}`, {
+            
                 body: JSON.stringify({ data: base64EncodedImage }),
                 headers: { 'Content-Type': 'application/json' },
             });
@@ -71,7 +71,7 @@ function Aadhar() {
                 <input
                     id="fileInput"
                     type="file"
-                    name="image"
+                    name="file"
                     onChange={handleFileInputChange}
                     value={fileInputState}
                     className="form-input"
