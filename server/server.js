@@ -1,3 +1,4 @@
+
 require('dotenv').config()
 const express = require('express')
 const productRoutes = require('./routes/productRoutes')
@@ -22,5 +23,7 @@ app.use('/api/products', productRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/cart', cartRoutes)
 app.use('/api/userinfo', userinfoRoutes )
-const PORT = process.env.PORT || 5001
+
+
+const PORT =5000
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
