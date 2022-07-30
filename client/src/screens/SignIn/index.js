@@ -24,9 +24,12 @@ function Index() {
         alert(data)
         return
       }
+      localStorage.setItem("user_id",data._id);
+      console.log(data._id);
       const {token} = JSON.parse(data)
       setToken(token)
       replace('/')
+     
     }
   }, [email, password, replace])
 
