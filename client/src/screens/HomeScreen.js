@@ -43,6 +43,12 @@ const HomeScreen = () => {
             />
           ))
         )}
+        <div>
+          AD 
+          <a onClick={() => alert('button click catched')}>
+             <img src='https://www.wordstream.com/wp-content/uploads/2021/07/persuasive-ads-coca-cola.jpg'/>
+          </a>
+        </div>
       </div>
     </div>
   )
