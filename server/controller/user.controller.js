@@ -24,15 +24,19 @@ const signInUser = async (req, res) => {
   console.log(req.body)
   try {
     const user = await User.findOne({email})
+   
+
     if (!!!user) {
       sendResponseError(400, 'You have to Sign up first !', res)
     }
 
     const same = await checkPassword(password, user.password)
     if (same) {
-      let token = newToken(user)
-     
-      res.status(200).send({status: 'ok', token})
+      let token = newToken(user)  
+      let id = user._id
+      console.log(id)
+      console.log(token)   
+      res.status(200).send({status: 'ok', token, id})
       return
     }
     sendResponseError(400, 'InValid password !', res)

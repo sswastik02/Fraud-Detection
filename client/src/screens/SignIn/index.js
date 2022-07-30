@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import {Api} from '../../utils/Api'
-import {setToken} from '../../utils/localstorage'
+import {setId, setToken} from '../../utils/localstorage'
 import './signIn.css'
 function Index() {
   const {replace, push} = useHistory()
@@ -15,17 +15,24 @@ function Index() {
       setLoading(true)
       const {statusCode, data} = await Api.postRequest('/api/user/signin', {
         email,
-
         password,
       })
+      console.log(statusCode)
+   
+     
       setLoading(false)
       if (statusCode === 400 || statusCode === 500 || statusCode === 403) {
         setLoading(false)
         alert(data)
         return
       }
-      const {token} = JSON.parse(data)
+      const {statuscode, token, id} = JSON.parse(data)
+      console.log(token)
+      console.log(id)
       setToken(token)
+
+      setId(id)
+
       replace('/')
     }
   }, [email, password, replace])
