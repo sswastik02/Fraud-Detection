@@ -19,7 +19,7 @@ function Aadhar() {
    
 
     await axios
-      .put(`http://localhost:5000/api/userinfo/${uid}`, {
+      .put(`http://localhost:5000/api/aadharinfo/${uid}`, {
         firstname: firstname,
         lastname: lastname,
         age: age,
