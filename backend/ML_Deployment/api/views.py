@@ -32,6 +32,7 @@ class TransactionDetection(APIView):
                 )
 
 class PhishingSiteDetection(APIView):
+    authentication_classes=[]
     def post(self,request):
         serializer = PhishingSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)

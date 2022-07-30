@@ -1,6 +1,7 @@
 import './HomeScreen.css'
 import {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
+import axios from 'axios'
 
 // Components
 import Product from '../components/Product'
@@ -11,6 +12,7 @@ import {setUserDeatils} from '../redux/actions/userAction'
 
 const HomeScreen = () => {
   const dispatch = useDispatch()
+  const url = 'https://google.com'
 
   const getProducts = useSelector(state => state.getProducts)
   const {products, loading, error} = getProducts
@@ -23,6 +25,28 @@ const HomeScreen = () => {
     dispatch(setUserDeatils())
   }, [dispatch])
 
+  const handleClick = async () => {
+    
+   alert('works');
+   
+   
+
+    await axios
+      .post("http://127.0.0.1:8000/api/phishingsite/detect", {
+        url
+        
+      })
+      .then((res) => {
+        console.log(res);
+        
+      })
+
+      .catch((err) => console.log(err));
+
+      
+  };
+
+  
   return (
     <div className="homescreen">
       <h2 className="homescreen__title">Latest Products</h2>
@@ -45,7 +69,7 @@ const HomeScreen = () => {
         )}
         <div>
           AD 
-          <a onClick={() => alert('button click catched')}>
+          <a onClick={handleClick}>
              <img src='https://www.wordstream.com/wp-content/uploads/2021/07/persuasive-ads-coca-cola.jpg'/>
           </a>
         </div>
