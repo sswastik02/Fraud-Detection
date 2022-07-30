@@ -7,31 +7,31 @@ cloudinary.config({
     api_secret: process.env.API_SECRET
   });
 const getAadharInfo = async (req, res) => {
+    console.log('helloo')
   try {
-    const fileStr = req.body.data;
-    // const uploadResponse = await cloudinary.uploader.upload(fileStr, {
-    //     upload_preset: 'dev_setups',
-    // });
-    console.log(fileStr);
-    const uploadResponse = await cloudinary.uploader.upload(fileStr ,
+      const fileStr = req.body.fileStr;
+      // const uploadResponse = await cloudinary.uploader.upload(fileStr, {
+      //     upload_preset: 'dev_setups',
+      // });
+      // console.log(uploadResponse);
+       // res.json({ msg: 'yaya' });
+        const uploadResponse = await cloudinary.uploader.upload(fileStr ,
         result => {
-            console.log(result)
             if (result) {
-                res.writeHead(200, { 'content-type': 'text/plain' });
                 userData.findById(req.params.id)
                 .then((user) => {
-                    res.statusCode = 200;
-                    user.aadharURL = result;
+                    user.aadharURL = result.url;
                     console.log(user.aadharURL)
+                    user.save()  
+                    .then((user) =>{
+                      res.statusCode = 200;
+                      res.json(user);
+                    })
                 },
                 (err) => next(err))
                 .catch((err) => next(err));
-                res.write('received upload:\n\n')
-            }
-                console.log(uploadResponse);
-                res.json({ msg: 'yaya' });
-  
-      });
+            }  
+        });
     }
     catch (err) {
     console.log(err)

@@ -16,6 +16,8 @@ function Aadhar() {
     const [selectedFile, setSelectedFile] = useState();
     const [successMsg, setSuccessMsg] = useState('');
     const [errMsg, setErrMsg] = useState('');
+    const uid = localStorage.getItem("USER_ID");
+  console.log(uid);
     const handleFileInputChange = (e) => {
         const file = e.target.files[0];
         previewFile(file);
@@ -46,9 +48,10 @@ function Aadhar() {
     };
 
     const uploadImage = async (base64EncodedImage) => {
+      console.log(base64EncodedImage);
         try {
-            await fetch('/api/upload', {
-                method: 'POST',
+            await fetch(`/api/aadharinfo/${uid}`, {
+                method: 'PUT',
                 body: JSON.stringify({ data: base64EncodedImage }),
                 headers: { 'Content-Type': 'application/json' },
             });
