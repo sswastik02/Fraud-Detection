@@ -2,7 +2,8 @@ const userData = require('../models/User')
 
 const getUserInfo = async (req, res) => {
     try {
-      const userinfo = await userData.find({ _id : req.params.id})
+      console.log(req.user.id)
+      const userinfo = await userData.find({ _id : req.user.id})
       console.log(userinfo)
       userData.findById( req.params.id)
       .then((user) =>{
