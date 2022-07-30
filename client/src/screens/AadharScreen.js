@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import "./AadharScreen.css";
 import Navbar from "../components/Navbar";
 import { useState } from "react";
+import axios from "axios";
 
 function Aadhar() {
   const uid = localStorage.getItem("USER_ID");
@@ -15,9 +16,6 @@ function Aadhar() {
  
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-   
-
     await axios
       .put(`http://localhost:5000/api/aadharinfo/${uid}`, {
         firstname: firstname,

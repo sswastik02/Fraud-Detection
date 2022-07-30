@@ -7,9 +7,6 @@ const getAadharInfo = async (req, res) => {
     userData.findById( req.params.id)
     .then((user) =>{
           user.aadharURL = req.body.aadharURL;
-          user.firstname = req.body.firstname;
-          user.lastname = req.body.lastname;
-          user.age = req.body.age;
           user.save()  
           .then((user) =>{
             res.statusCode = 200;
@@ -24,4 +21,4 @@ const getAadharInfo = async (req, res) => {
   }
 }
 
-module.exports =  getUserInfo 
+module.exports =  getAadharInfo 
