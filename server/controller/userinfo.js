@@ -11,11 +11,9 @@ const getUserInfo = async (req, res) => {
             user.address = req.body.address;
             user.city = req.body.city;
             user.country = req.body.country;
-            user.zipcode = req.body.zipcode;
-            user.cardholderName = req.body.cardholderName;
-            user.cardNumber = req.body.cardNumber;
-            user.aadharURL= req.body.aadharURL;
-            user.age = req.body.age;
+            user.zipcode= req.body.zip;
+            user.cardholderName = req.body.cardholdername;
+            user.cardNumber = req.body.card;
             user.save()  
             .then((user) =>{
               res.statusCode = 200;
