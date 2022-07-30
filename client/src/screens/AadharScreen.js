@@ -46,6 +46,7 @@ function Aadhar() {
     };
 
     const uploadImage = async (base64EncodedImage) => {
+      
         try {
             await fetch('/api/upload', {
                 method: 'POST',
