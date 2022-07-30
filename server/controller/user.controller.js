@@ -31,7 +31,8 @@ const signInUser = async (req, res) => {
     const same = await checkPassword(password, user.password)
     if (same) {
       let token = newToken(user)
-      res.status(200).send({status: 'ok', token})
+      let data = {user,token}
+      res.status(200).send({status: 'ok', data})
       return
     }
     sendResponseError(400, 'InValid password !', res)
