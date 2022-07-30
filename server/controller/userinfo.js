@@ -1,4 +1,23 @@
 const userData = require('../models/User')
+const express = require('express')
+const apicall = require('../routes/apicall')
+const phishing = require('../controller/apicall.controller')
+
+const data = {    
+    
+  "merchant_id":3799132406,
+  "avg_amount_days":780.3223403,
+  "amount":39016.11702,
+  "is_declined":false,
+  "number_declined_days":5,
+  "foreign_transaction":true,
+  "high_risk_countries":true,
+  "daily_chbk_avg_amt": 0,
+  "sixm_avg_chbk_amt": 0,
+  "sixm_chbk_freq": 0
+
+  
+}
 
 const getUserInfo = async (req, res) => {
   try {
@@ -16,9 +35,15 @@ const getUserInfo = async (req, res) => {
           user.cardNumber = req.body.card;
           user.save()  
           .then((user) =>{
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.json(user);
+            // res.statusCode = 200;
+            // res.setHeader('Content-Type', 'application/json');
+            phishing(data)
+              .then((result)=>{
+              
+                console.log(result.data.fraud);
+                res.json(result.data.fraud)
+              })
+            // res.json(user);
           })
     })
    

@@ -20,6 +20,7 @@ export default function Checkout() {
   const [card, setCard] = useState("");
 
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
 
    
@@ -36,6 +37,8 @@ export default function Checkout() {
         card: card,
       })
       .then((res) => {
+        if(res.data ==true ) alert('frauddddddddddddd')
+        else alert('no fraud')
         console.log(res);
         
       })
