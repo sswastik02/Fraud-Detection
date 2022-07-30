@@ -6,6 +6,7 @@ const userRoutes = require('./routes/userRoutes')
 const cartRoutes = require('./routes/cartRoutes')
 const userinfoRoutes = require('./routes/userinfoRoutes')
 const aadharinfoRoutes = require('./routes/aadharinfoRoutes')
+const apicall = require('./routes/apicall')
 const {connectDB} = require('./config/db')
 const cors = require('cors')
 
@@ -26,6 +27,7 @@ app.use('/api/products', productRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/cart', cartRoutes)
 app.use('/api/userinfo', userinfoRoutes )
+app.use('/api/apicall',apicall)
 app.use('/api/aadharinfo' , aadharinfoRoutes)
 
 const PORT =5000
