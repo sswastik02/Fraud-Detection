@@ -1,5 +1,6 @@
 const userData = require('../models/User')
 const cloudinary = require('cloudinary')
+// const formidable = require('for')
 require('dotenv').config()
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
@@ -9,6 +10,7 @@ cloudinary.config({
 const getAadharInfo = async (req, res) => {
     console.log('helloo')
   try {
+    // const form = new Formidable();
       const fileStr = req.body.body;
       // const uploadResponse = await cloudinary.uploader.upload(fileStr, {
       //     upload_preset: 'dev_setups',

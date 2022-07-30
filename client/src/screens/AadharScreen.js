@@ -47,10 +47,8 @@ function Aadhar() {
         };
     };
 
-    const uploadImage = async (base64EncodedImage) => {        
-          console.log(base64EncodedImage)
-
-    
+    const uploadImage = async (base64EncodedImage) => {
+            console.log(base64EncodedImage)
         try {
             axios.put(`http://localhost:5000/api/aadharinfo/${uid}`, {
             
