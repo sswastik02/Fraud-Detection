@@ -11,7 +11,7 @@ import axios from 'axios';
 
 export default function Checkout(){
 
-  const uid = localStorage.getItem("user_id");
+  const uid = localStorage.getItem("USER_ID");
   console.log(uid);
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
@@ -26,20 +26,20 @@ export default function Checkout(){
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    const body = JSON.stringify({
+      firstname: firstname,
+      lastname: lastname,
+      address: address,
+      zip: zip,
+      city: city,
+      country: country,
+      cardholdername: cardholdername,
+      card: card
+    })
   
   await axios
   .post(`http://localhost:5000/api/userinfo/:${uid}`, {
-  firstname,
-  lastname,
-    address,
-    zip,
-    city,
-    country,
-    cardholdername,
-    card,
-    
-    
+   data:body  
   })
   .then((res) => {
     console.log(res);
