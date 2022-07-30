@@ -1,14 +1,53 @@
-import { useEffect } from "react";
+import React, { Component} from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import "./CheckoutScreen.css";
 import Navbar from "../components/Navbar";
 import { useState } from "react";
+import axios from 'axios';
 
 
 
 
-function Checkout(){
+export default function Checkout(){
+
+  const uid = localStorage.getItem("user_id");
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [address, setAddress] = useState("");
+
+  const [zip, setZip] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+  const [cardholdername, setCardholderName] = useState("");
+  const [card, setCard] = useState("");
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+  await axios
+  .post(`http://localhost:5000/api/userinfo/:${uid}`, {
+  firstname,
+  lastname,
+    address,
+    zip,
+    city,
+    country,
+    cardholdername,
+    card,
+    
+    
+  })
+  .then((res) => {
+    console.log(res);
+    window.location = "/receiver";
+  })
+
+  .catch((err) => console.log(err));
+};
+
+ 
 return (
   <div>
     <div className="container">
@@ -23,34 +62,46 @@ return (
             <div className="row1">
               <div className="first-name">
                 <label htmlFor="">First Name</label>
-                <input type="text" />
+                <input type="text" onChange={(e) => {
+                      setFirstName(e.target.value);
+                    }} value={firstname}/>
               </div>
               <div className="last-name">
                 <label htmlFor="">Last Name</label>
-                <input type="text" />
+                <input type="text" nChange={(e) => {
+                      setLastName(e.target.value);
+                    }} value={lastname}/>
               </div>
             </div>
             <div className="row2">
               <div className="address">
                 <label htmlFor="">Address</label>
-                <input type="text" />
+                <input type="text" onChange={(e) => {
+                      setAddress(e.target.value);
+                    }} value={address}/>
               </div>
               <div className="postal-code">
                 <label htmlFor="">ZIP/Postal Code</label>
-                <input type="text" />
+                <input type="text"  onChange={(e) => {
+                      setZip(e.target.value);
+                    }} value={zip} />
               </div>
             </div>
             <div className="row3">
               <div className="city">
                 <label htmlFor="">City</label>
-                <input type="text" />
+                <input type="text"   onChange={(e) => {
+                      setCity(e.target.value);
+                    }} value={city} />
               </div>
               <div className="country">
                 <div className="label">
                   <label htmlFor="">Country</label>
                 </div>
                 <div className="input">
-                  <input type="text" />
+                  <input type="text" onChange={(e) => {
+                      setCountry(e.target.value);
+                    }} value={country} />
                 </div>
               </div>
             </div>
@@ -64,11 +115,15 @@ return (
             <div className="row3">
               <div className="address">
                 <label htmlFor="">Card Holder</label>
-                <input type="text" />
+                <input type="text" onChange={(e) => {
+                      setCardholderName(e.target.value);
+                    }}value={cardholdername} />
               </div>
               <div className="postal-code">
                 <label htmlFor="">Card Number</label>
-                <input type="text" />
+                <input type="text"  onChange={(e) => {
+                      setCard(e.target.value);
+                    }} value={card}/>
               </div>
             </div>
             <div className="row4">
@@ -88,7 +143,7 @@ return (
           </div>
           <div className="row5">
             <div className="button">
-              <button>Proceed to Payment </button>
+              <button onClick={handleSubmit}>Proceed to Payment </button>
             </div>
           </div>
         </form>
@@ -96,8 +151,12 @@ return (
     </div>
   </div>
 );
+ 
+                  }
 
-}
+
+  
 
 
-export default Checkout;
+
+
