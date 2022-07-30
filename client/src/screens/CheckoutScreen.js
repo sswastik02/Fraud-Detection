@@ -12,6 +12,7 @@ import axios from 'axios';
 export default function Checkout(){
 
   const uid = localStorage.getItem("user_id");
+  console.log(uid);
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [address, setAddress] = useState("");
@@ -25,6 +26,7 @@ export default function Checkout(){
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
   
   await axios
   .post(`http://localhost:5000/api/userinfo/:${uid}`, {
@@ -42,6 +44,7 @@ export default function Checkout(){
   .then((res) => {
     console.log(res);
     window.location = "/receiver";
+   
   })
 
   .catch((err) => console.log(err));
@@ -68,7 +71,7 @@ return (
               </div>
               <div className="last-name">
                 <label htmlFor="">Last Name</label>
-                <input type="text" nChange={(e) => {
+                <input type="text" onChange={(e) => {
                       setLastName(e.target.value);
                     }} value={lastname}/>
               </div>
