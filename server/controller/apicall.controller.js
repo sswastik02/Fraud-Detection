@@ -17,15 +17,19 @@ const data = {
 }
  const phising =  async () =>{
     console.log(process.env.api_url)
+    let data123
     await axios.post('http://127.0.0.1:8000/api/transactions/detect' , data ,{
     headers:{
         'Authorization' :`Api-Key ${process.env.api_url}`,
         }
-    }).then( (res) =>{
-        console.log(res);
+    }).then( (result) =>{
+        data123 = result
+   
+        
     }).catch((err) =>{
         console.log(err)
     })
+    return data123
  } 
 
 module.exports = phising
