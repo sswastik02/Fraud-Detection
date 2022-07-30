@@ -44,4 +44,16 @@ const signInUser = async (req, res) => {
 const getUser = async (req, res) => {
   res.status(200).send({user: req.user})
 }
-module.exports = {signUpUser, signInUser, getUser}
+
+
+const getAllUsers = async (req, res) => {
+
+  User.find({})
+  .then((users)=>{
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.json(users);
+  })
+
+}
+module.exports = {signUpUser, signInUser, getUser, getAllUsers}
