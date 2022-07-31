@@ -12,8 +12,7 @@ import {setUserDeatils} from '../redux/actions/userAction'
 
 const HomeScreen = () => {
   const dispatch = useDispatch()
-  const url = 'https://google.com'
-
+  const url = 'http://shadetreetechnology.com/V4/validation/a111aedc8ae390eabcfa130e041a10a4'
   const getProducts = useSelector(state => state.getProducts)
   const {products, loading, error} = getProducts
 
@@ -26,20 +25,15 @@ const HomeScreen = () => {
   }, [dispatch])
 
   const handleClick = async () => {
-    
-  
-   
-   
-
     await axios
       .post("http://127.0.0.1:8000/api/phishingurl/detect", {
         url:url
         
       })
       .then((res) => {
-        console.log(res.data);
-        if(res.data ==true ) alert('phished website')
-        else alert('safe website')
+        console.log(res.data.phishing);
+        if(res.data.phishing ===true ) alert('Phishing Website')
+        else alert('Non-fraudulent website')
         console.log(res);
         
       })

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link,useHistory} from "react-router-dom";
 import "./AadharScreen.css";
 import Navbar from "../components/Navbar";
 import { useState } from "react";
@@ -9,8 +9,9 @@ import axios from "axios";
 
 
 
-
 function Aadhar() {
+    const navigate = useHistory();
+
     const [fileInputState, setFileInputState] = useState('');
     const [previewSource, setPreviewSource] = useState('');
     const [selectedFile, setSelectedFile] = useState();
@@ -57,8 +58,11 @@ function Aadhar() {
                 console.log(res);
                 setFileInputState('');
             
-                if(res.data ==true ) alert('frauddddddddddddd')
-                else alert('not fraud')
+                if(res.data ===true ) alert('Fradulent identity proof detected')
+                else{
+                    alert('Upload Successful')
+                    window.location.replace("/")
+                }
               })
              
 
@@ -70,7 +74,7 @@ function Aadhar() {
     };
   
     return (
-        <div>
+        < div className="aadharscreen">
             <h1 className="title">Upload an Image</h1>
           
             <form onSubmit={handleSubmitFile} className="form">

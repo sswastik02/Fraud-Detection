@@ -8,8 +8,8 @@
   z-index: 50;
 }
 
-.navbar__logo h2 {
-  color: #f4f4f4;
+.navbar__logo h1 {
+  color: #f4f4f4 !important;
   font-size: 1.4rem;
   cursor: pointer;
 }

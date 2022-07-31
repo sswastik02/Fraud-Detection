@@ -58,13 +58,15 @@ export default function Checkout({ setValue }) {
       })
       .then((res) => {
         console.log(res);
-        if(res.data ==true ) {
-          // alert('frauddddddddddddd')
-          read("ARCHIT","wfeff","ffff",2,"effefe","cweefef");
+        if(res.data.fraud === true ) {
+          alert('fraudulent action detected')
+          
         }
          else {
           console.log('read function called')
-          read(res.firstname,"wfeff","ffff",2,"effefe","cweefef");
+          read(res.data.user.firstname,"amazon", "adidas",500,"5688732",res.data.user.email);
+          alert('Transaction Succesful')
+          window.location.replace("/")
          }
        
         

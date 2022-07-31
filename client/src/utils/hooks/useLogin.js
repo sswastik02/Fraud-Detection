@@ -1,6 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
-import {useHistory} from 'react-router'
+// import {useHistory} from 'react-router'
+import { useHistory } from "react-router-dom";
+
 import {Api} from '../Api'
 import {logout} from '../localstorage'
 

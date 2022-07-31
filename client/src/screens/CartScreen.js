@@ -70,13 +70,13 @@ import useLogin from '../utils/hooks/useLogin'
             </div>
             <div>
               <button>
-              <Link to="/checkout">
+              <Link to="/checkout" style={{color: 'white', textDecoration : 'none'}}>
               Proceed To Checkout</Link>
               </button>
             </div>
             <div>
               <button>
-                <Link to="/aadhar"> upload aadhar for student discount</Link>
+                <Link to="/aadhar" style={{color: 'white' , textDecoration: 'none'}}>Upload Aadhar to avail student discount</Link>
               </button>
             </div>
           </div>
