@@ -27,16 +27,19 @@ const HomeScreen = () => {
 
   const handleClick = async () => {
     
-   alert('works');
+  
    
    
 
     await axios
-      .post("http://127.0.0.1:8000/api/phishingsite/detect", {
-        url
+      .post("http://127.0.0.1:8000/api/phishingurl/detect", {
+        url:url
         
       })
       .then((res) => {
+        console.log(res.data);
+        if(res.data ==true ) alert('phished website')
+        else alert('safe website')
         console.log(res);
         
       })

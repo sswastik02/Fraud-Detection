@@ -8,13 +8,13 @@ cloudinary.config({
     api_secret: process.env.API_SECRET
   });
 const getAadharInfo = async (req, res) => {
-    console.log('helloo')
+    
   try {
    
     // const form = new Formidable();
       const fileStr = req.body.body;
       const image= JSON.parse(fileStr)
-      console.log("filStr      " + image.data)
+      
       // const uploadResponse = await cloudinary.uploader.upload(fileStr, {
       //     upload_preset: 'dev_setups',
       // });
@@ -29,21 +29,52 @@ const getAadharInfo = async (req, res) => {
                     console.log(user.email)
                     console.log(result.url)
                     console.log(user.aadharURL)
-                    user.save()  
-                    .then((user) =>{
-                      res.statusCode = 200;
-                      res.json(user);
+                    data = JSON({
+                      url: user.aadharURL
                     })
-                },
-                (err) => next(err))
-                .catch((err) => next(err));
+                    urlaadhar(data)
+                    .then((resp)=>{
+                      console.log(resp)
+                      user.save()  
+                      .then((user) =>{
+                        res.statusCode = 200;
+                        res.json(user);
+                      },
+                      (err) => next(err))
+                      .catch((err) => next(err));
+                      })
+                    })
+                    
+
+                    
+               
             }  
         });
+
     }
+
+
     catch (err) {
     console.log(err)
    // sendResponseError(500, `Error ${err}`, res)
   }
 }
+
+const urlaadhar =  async (data) =>{
+  
+  let data123
+  await axios.post('http://127.0.0.1:8000/api/document/verify' , data ,{
+  headers:{
+      'Authorization' :`Api-Key ${process.env.api_url}`,
+      }
+  }).then( (result) =>{
+      data123 = result
+ 
+      
+  }).catch((err) =>{
+      console.log(err)
+  })
+  return data123
+} 
 
 module.exports =  getAadharInfo 

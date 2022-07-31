@@ -8,6 +8,8 @@ import axios from "axios";
 
 export default function Checkout() {
   const uid = localStorage.getItem("USER_ID");
+  
+  
   console.log(uid);
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");

@@ -55,6 +55,7 @@ function Aadhar() {
                 body: JSON.stringify({ data: base64EncodedImage }),
                 headers: { 'Content-Type': 'application/json' },
             });
+
             setFileInputState('');
             setPreviewSource('');
             setSuccessMsg('Image uploaded successfully');
@@ -63,6 +64,7 @@ function Aadhar() {
             setErrMsg('Something went wrong!');
         }
     };
+  
     return (
         <div>
             <h1 className="title">Upload an Image</h1>
