@@ -89,10 +89,10 @@ class DocumentDetection(APIView):
                 },
                 status=HTTP_200_OK
             )
-        except Exception as e:
+        except:
             return Response(
                 {
-                    'error':'could not process request',
+                    "document":False,
                 },
-                status=HTTP_500_INTERNAL_SERVER_ERROR
+                status=HTTP_200_OK
             )
