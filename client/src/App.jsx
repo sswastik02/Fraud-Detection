@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Navbar from './components/Navbar'
 import SideDrawer from './components/SideDrawer'
 import BackDrop from './components/Backdrop'
+import { EthProvider } from "./contexts/EthContext";
 
 //screens
 import HomeScreen from './screens/HomeScreen'
@@ -29,23 +30,25 @@ function App() {
   }, [dispatch])
 
   return (
-    <Router>
-    <Navbar click={() => setSideToggle(true)} />
-    <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
-    <BackDrop show={sideToggle} click={() => setSideToggle(false)} />
+    <EthProvider>
+      <Router>
+      <Navbar click={() => setSideToggle(true)} />
+      <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
+      <BackDrop show={sideToggle} click={() => setSideToggle(false)} />
 
-    <main className="app">
-      <Switch>
-        <Route exact path = "/" component={HomeScreen}/>
-        <Route exact path="/product/:id" component={ProductScreen} />
-        <Route exact path="/signup" component={SignUp} />
-        <Route exact path="/cart" component={CartScreen} />
-        <Route exact path="/signin" component={SignIn} />
-         <Route exact path="/checkout" component={Checkout}/>
-         <Route exact path="/aadhar" component={Aadhar}/>
-      </Switch>
-    </main>
-  </Router>
+      <main className="app">
+        <Switch>
+          <Route exact path = "/" component={HomeScreen}/>
+          <Route exact path="/product/:id" component={ProductScreen} />
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/cart" component={CartScreen} />
+          <Route exact path="/signin" component={SignIn} />
+          <Route exact path="/checkout" component={Checkout}/>
+          <Route exact path="/aadhar" component={Aadhar}/>
+        </Switch>
+      </main>
+    </Router>
+    </EthProvider>
   )
 }
 

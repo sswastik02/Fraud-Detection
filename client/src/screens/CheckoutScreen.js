@@ -17,7 +17,7 @@ export default function Checkout({ setValue }) {
  // };
 
   const read = async (a,b,c,i,d,e) => {
-    console.log("helloooo")
+    console.log("architlallllllll")
    // const value = 
      await contract.methods.addTransaction(a,b,c,i,d,e).send({ from: accounts[0] });
     //setValue(value);
@@ -58,8 +58,14 @@ export default function Checkout({ setValue }) {
       })
       .then((res) => {
         console.log(res);
-        if(res.data ==true ) alert('frauddddddddddddd')
-         else read(res.firstname,"wfeff","ffff",2,"effefe","cweefef");
+        if(res.data ==true ) {
+          // alert('frauddddddddddddd')
+          read("ARCHIT","wfeff","ffff",2,"effefe","cweefef");
+        }
+         else {
+          console.log('read function called')
+          read(res.firstname,"wfeff","ffff",2,"effefe","cweefef");
+         }
        
         
       })
