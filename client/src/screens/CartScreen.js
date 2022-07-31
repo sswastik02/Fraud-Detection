@@ -70,12 +70,8 @@ import useLogin from '../utils/hooks/useLogin'
             </div>
             <div>
               <button>
-              <Link
-  to={{
-    pathname: "/checkout",
-    state: getCartSubTotal() // your data array of objects
-  }}
->Proceed To Checkout</Link>
+              <Link to="/checkout">
+              Proceed To Checkout</Link>
               </button>
             </div>
             <div>

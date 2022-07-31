@@ -4,9 +4,27 @@ import { Link, useHistory } from "react-router-dom";
 import "./CheckoutScreen.css";
 import Navbar from "../components/Navbar";
 import { useState } from "react";
+import useEth from "../contexts/EthContext/useEth";
 import axios from "axios";
+export default function Checkout({ setValue }) {
+  const { state: { contract, accounts } } = useEth();
+  // const [inputValue, setInputValue] = useState("");
 
-export default function Checkout() {
+  // const handleInputChange = e => {
+  //   if (/^\d+$|^$/.test(e.target.value)) {
+  //     setInputValue(e.target.value);
+  //   }
+ // };
+
+  const read = async (a,b,c,i,d,e) => {
+    console.log("helloooo")
+   // const value = 
+     await contract.methods.addTransaction(a,b,c,i,d,e).send({ from: accounts[0] });
+    //setValue(value);
+  };
+
+
+
   const uid = localStorage.getItem("USER_ID");
   
   
@@ -25,7 +43,7 @@ export default function Checkout() {
     
     e.preventDefault();
 
-   
+   console.log('submit')
 
     await axios
       .put(`http://localhost:5000/api/userinfo/${uid}`, {
@@ -39,9 +57,10 @@ export default function Checkout() {
         card: card,
       })
       .then((res) => {
-        if(res.data ==true ) alert('frauddddddddddddd')
-        else alert('no fraud')
         console.log(res);
+        if(res.data ==true ) alert('frauddddddddddddd')
+         else read(res.firstname,"wfeff","ffff",2,"effefe","cweefef");
+       
         
       })
 
@@ -181,5 +200,7 @@ export default function Checkout() {
         </div>
       </div>
     </div>
-  );
-}
+);
+   
+     }
+                
