@@ -6,7 +6,15 @@ import Navbar from "../components/Navbar";
 import { useState } from "react";
 import useEth from "../contexts/EthContext/useEth";
 import axios from "axios";
+export default function Checkout({ setValue }) {
+  const { state: { contract, accounts } } = useEth();
+  // const [inputValue, setInputValue] = useState("");
 
+  // const handleInputChange = e => {
+  //   if (/^\d+$|^$/.test(e.target.value)) {
+  //     setInputValue(e.target.value);
+  //   }
+ // };
 
   const read = async (a,b,c,i,d,e) => {
     console.log("architlallllllll")
@@ -15,15 +23,6 @@ import axios from "axios";
     //setValue(value);
   };
 
- 
-
-  // const read = async (a,b,c,i,d,e) => {
-  //   console.log("helloooo")
-  //  const value = 
-  //    await contract.methods.addTransaction(a,b,c,i,d,e).send({ from: accounts[0] });
-  //   setValue(value);
-  // };
- 
 
 
   const uid = localStorage.getItem("USER_ID");
@@ -61,7 +60,7 @@ import axios from "axios";
         console.log(res);
         if(res.data ==true ) {
           // alert('frauddddddddddddd')
-          // read("ARCHIT","wfeff","ffff",2,"effefe","cweefef");
+          read("ARCHIT","wfeff","ffff",2,"effefe","cweefef");
         }
          else {
           console.log('read function called')
@@ -73,7 +72,7 @@ import axios from "axios";
 
       .catch((err) => console.log(err));
   };
-  
+
   return (
     <div>
       <div className="container">
@@ -209,5 +208,5 @@ import axios from "axios";
     </div>
 );
    
-
+     }
                 
