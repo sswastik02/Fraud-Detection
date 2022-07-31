@@ -14,8 +14,7 @@ function Aadhar() {
     const [fileInputState, setFileInputState] = useState('');
     const [previewSource, setPreviewSource] = useState('');
     const [selectedFile, setSelectedFile] = useState();
-    const [successMsg, setSuccessMsg] = useState('');
-    const [errMsg, setErrMsg] = useState('');
+   
     const uid = localStorage.getItem("USER_ID");
   console.log(uid);
     const handleFileInputChange = (e) => {
@@ -43,7 +42,7 @@ function Aadhar() {
         };
         reader.onerror = () => {
             console.error('AHHHHHHHH!!');
-            setErrMsg('something went wrong!');
+           
         };
     };
 
@@ -54,14 +53,19 @@ function Aadhar() {
             
                 body: JSON.stringify({ data: base64EncodedImage }),
                 headers: { 'Content-Type': 'application/json' },
-            });
+            }).then((res) => {
+                console.log(res);
+                setFileInputState('');
+            
+                if(res.data ==true ) alert('frauddddddddddddd')
+                else alert('not fraud')
+              })
+             
 
-            setFileInputState('');
-            setPreviewSource('');
-            setSuccessMsg('Image uploaded successfully');
+            
         } catch (err) {
             console.error(err);
-            setErrMsg('Something went wrong!');
+           
         }
     };
   

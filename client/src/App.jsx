@@ -29,7 +29,9 @@ function App() {
   }, [dispatch])
 
   return (
+    
     <Router>
+   
     <Navbar click={() => setSideToggle(true)} />
     <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
     <BackDrop show={sideToggle} click={() => setSideToggle(false)} />
@@ -46,6 +48,7 @@ function App() {
       </Switch>
     </main>
   </Router>
+ 
   )
 }
 

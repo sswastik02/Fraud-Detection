@@ -6,23 +6,23 @@ import Navbar from "../components/Navbar";
 import { useState } from "react";
 import useEth from "../contexts/EthContext/useEth";
 import axios from "axios";
-export default function Checkout({ setValue }) {
-  const { state: { contract, accounts } } = useEth();
-  // const [inputValue, setInputValue] = useState("");
 
-  // const handleInputChange = e => {
-  //   if (/^\d+$|^$/.test(e.target.value)) {
-  //     setInputValue(e.target.value);
-  //   }
- // };
 
-  const read = async (a,b,c,i,d,e) => {
-    console.log("helloooo")
-   // const value = 
-     await contract.methods.addTransaction(a,b,c,i,d,e).send({ from: accounts[0] });
-    //setValue(value);
-  };
+export default function Checkout() {
+  
+  // const { state: { contract, accounts } } = useEth();
+  
+  
 
+ 
+
+  // const read = async (a,b,c,i,d,e) => {
+  //   console.log("helloooo")
+  //  const value = 
+  //    await contract.methods.addTransaction(a,b,c,i,d,e).send({ from: accounts[0] });
+  //   setValue(value);
+  // };
+ 
 
 
   const uid = localStorage.getItem("USER_ID");
@@ -59,14 +59,12 @@ export default function Checkout({ setValue }) {
       .then((res) => {
         console.log(res);
         if(res.data ==true ) alert('frauddddddddddddd')
-         else read(res.firstname,"wfeff","ffff",2,"effefe","cweefef");
-       
-        
+        else alert('not fraud')
       })
 
       .catch((err) => console.log(err));
   };
-
+  
   return (
     <div>
       <div className="container">
