@@ -3,6 +3,7 @@ import numpy as np
 import pytesseract as ocr
 from PIL import Image
 import cv2
+from pathlib import Path
 
 from .verhoeff import compute_checksum
 
@@ -17,7 +18,7 @@ def Regex_Search(bounding_boxes):
     else:
       Result += '?'
 
-  matches = [match.span() for match in re.finditer(r'\d{12}',Result,overlapped=True)]
+  matches = [match.span() for match in re.finditer(r'\d{12}',Result)]
 
   for match in matches :
 
@@ -106,7 +107,6 @@ def Extract_and_Mask_UIDs (image_path,SR=False,sr_image_path=None,SR_Ratio=[1,1]
     img = cv2.imread(sr_image_path)
 
   gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-
   rotations = [[gray,1],
                [cv2.rotate(gray,cv2.ROTATE_90_COUNTERCLOCKWISE),2],
                [cv2.rotate(gray,cv2.ROTATE_180),3],
@@ -120,11 +120,10 @@ def Extract_and_Mask_UIDs (image_path,SR=False,sr_image_path=None,SR_Ratio=[1,1]
 
   for rotation in rotations :
     
-    cv2.imwrite(image_path + 'rotated_grayscale.png',rotation[0])
-    bounding_boxes = ocr.image_to_boxes(Image.open('rotated_grayscale.png'),config=settings).split(" 0\n")
-
+    cv2.imwrite(image_path.split('.')[0] + 'rotated_grayscale.png',rotation[0])
+    bounding_boxes = ocr.image_to_boxes(Image.open(image_path.split('.')[0] + 'rotated_grayscale.png'),config=settings).split(" 0\n")
+    
     possible_UIDs = Regex_Search(bounding_boxes)
-
     if len(possible_UIDs)==0:
       continue
     else:
