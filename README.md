@@ -2,9 +2,15 @@
 
 ## About the App
 
-It is a E-Commerce Site that relies on ML Algoritms to detect fraudulent activity
+The MERN-based web app replicates any web app on the internet that facilitates online transactions and requires users to submit personal information.
+This web app uses trained Machine Learning Models, applied on top of the base of the application that aids fraud detection and online reliability.
+The application additionally ensures maximum security from data breaches using blockchain technology to secure transaction data.
 
 ## Objectives
+Our objective is to find a solution that helps to accurately achieve data and financial fraud detection and to employ good data practices to secure it from exploitation. We aim to build a socially inclusive solution that is accessible to all sorts of people, from senior citizens to differently-abled, making sure that technology is not driven by an ableist ideology.
+
+As a web application, it will facilitate online transactions and requires users to submit personal information.This app will have Machine Learning Models applied on top of the base of the application to reduce the risks of fraud and increase user reliability. When a person makes a certain transaction, the Model trained to detect net banking fraud will rely on information such as the previous patterns of user transactions, if they are making transactions from a high-risk country, the number of transactions, etc. This model uses a Convoluted Neural Network to provide maximum accuracy and recall with respect to other classification algorithms. The app will further store data on Blockchain to ensure maximum security and prevent data breaches.
+
 
 ## Technologies Used
 
@@ -60,10 +66,40 @@ It is a E-Commerce Site that relies on ML Algoritms to detect fraudulent activit
 
 ### <u>Blockchain</u>
 
-1. `npm install -g truffle` For truffle suite blockchain
-2. On Chrome/Firefox/Brave : 
-   1. Go to the extensions page of your browser and install the metamask plugin, click [here](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn).
-   2. On installation the user will be redirected to a setup page and the user has to choose a password and a recovery phrase.
+### **Ganache Local Development Blockchain**
+The dependency is a personal blockchain, which is a local development blockchain that can be used to mimic the behavior of a public blockchain. We recommend using [Ganache](https://www.trufflesuite.com/ganache) as your personal blockchain for Ethereum development. It will allow you to deploy smart contracts, develop applications, and run tests. It is available on Windows, Mac, and Linux as a desktop application and a command-line tool !
+
+Download it by clicking [here](https://www.trufflesuite.com/ganache).  *(For both Windows and Linux)*
+
+##### **For Linux Users :**
+
+*Once the download is complete, go to the folder where you have downloaded the file and open the terminal and type the following to make the file executable :*
+```
+Chmod a+x <filename.AppImage>
+```
+### **Truffle Framework**
+Now let's install the [Truffle Framework](https://www.trufflesuite.com/docs/truffle/overview), which provides a suite of tools for developing Ethereum smart contracts with the Solidity programming language.
+##### **For Windows Users :**
+Go to your cmd and type :
+```
+npm install -g truffle
+```
+##### **For Linux Users :**
+Go to your terminal and type :
+```
+$ sudo npm install -g truffle
+```
+<br>
+
+### **Metamask Wallet**
+
+For this project, we would require an ethereum wallet, and here we will use the popular open-source wallet metamask.
+
+**On chrome/firefox/brave :** *(It is recommended that you use Brave browser)*
+
+1. Go to the extensions page of your browser and install the metamask plugin, click [here](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn).
+2. On installation the user will be redirected to a setup page and the user has to choose a password and a recovery phrase.
+
 
 
 
