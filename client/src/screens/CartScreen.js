@@ -6,11 +6,12 @@ import {Link, useHistory} from 'react-router-dom'
 // Components
 import CartItem from '../components/CartItem'
 
+
 // Actions
 import {addToCart, removeFromCart} from '../redux/actions/cartActions'
 import useLogin from '../utils/hooks/useLogin'
 
-const CartScreen = () => {
+ const CartScreen = () => {
   const dispatch = useDispatch()
 
   const cart = useSelector(state => state.cart)
@@ -36,6 +37,7 @@ const CartScreen = () => {
       .reduce((price, item) => price + item.price * item.qty, 0)
       .toFixed(2)
   }
+  
 
   if (loginInfo.loading) return <h1>Loading.....</h1>
   else if (!loginInfo.loading && loginInfo.isLogin)
@@ -68,7 +70,12 @@ const CartScreen = () => {
             </div>
             <div>
               <button>
-                <Link to="/checkout"> Proceed To Checkout</Link>
+              <Link
+  to={{
+    pathname: "/checkout",
+    state: getCartSubTotal() // your data array of objects
+  }}
+>Proceed To Checkout</Link>
               </button>
             </div>
             <div>
@@ -81,5 +88,6 @@ const CartScreen = () => {
       </>
     );
 }
+
 
 export default CartScreen
