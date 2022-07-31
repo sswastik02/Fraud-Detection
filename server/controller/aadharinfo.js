@@ -1,6 +1,7 @@
 const userData = require('../models/User')
 const cloudinary = require('cloudinary')
 // const formidable = require('for')
+const axios = require('axios')
 require('dotenv').config()
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
@@ -29,9 +30,10 @@ const getAadharInfo = async (req, res) => {
                     console.log(user.email)
                     console.log(result.url)
                     console.log(user.aadharURL)
-                    data = JSON({
+                    let data = {
                       url: user.aadharURL
-                    })
+                    }
+                    console.log(data)
                     urlaadhar(data)
                     .then((resp)=>{
                       console.log(resp)
