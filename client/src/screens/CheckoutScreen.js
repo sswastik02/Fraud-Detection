@@ -56,7 +56,7 @@ export default function Checkout({ setValue }) {
         cardholdername: cardholdername,
         card: card,
       })
-      .then((res) => {
+      .then(async (res) => {
         console.log(res);
         if(res.data.fraud === true ) {
           alert('fraudulent action detected')
@@ -64,7 +64,7 @@ export default function Checkout({ setValue }) {
         }
          else {
           console.log('read function called')
-          read(res.data.user.firstname,"amazon", "adidas",500,"5688732",res.data.user.email);
+          await read(res.data.user.firstname,"amazon", "adidas",500,"5688732",res.data.user.email);
           alert('Transaction Succesful')
           window.location.replace("/")
          }

@@ -48,20 +48,21 @@ function Aadhar() {
     };
 
     const uploadImage = async (base64EncodedImage) => {
-            console.log(base64EncodedImage)
+            // console.log(base64EncodedImage)
         try {
             axios.put(`http://localhost:5000/api/aadharinfo/${uid}`, {
             
                 body: JSON.stringify({ data: base64EncodedImage }),
                 headers: { 'Content-Type': 'application/json' },
             }).then((res) => {
-                console.log(res);
+                // let res = JSON.parse(resp)
+                console.log(res.data.document);
                 setFileInputState('');
-            
-                if(res.data ===true ) alert('Fradulent identity proof detected')
+               
+                if(res.data.document == false) alert('Fradulent identity proof detected')
                 else{
-                    alert('Upload Successful')
-                    window.location.replace("/")
+                    alert('valid id proof')
+                    // window.location.replace("/")
                 }
               })
              

@@ -1,21 +1,16 @@
 const axios = require('axios')
 require('dotenv').config()
 const data = {    
-    
-    
-        "merchant_id":3799132406,
-        "avg_amount_days":642.6249223,
-        "amount":14780.37321,
-        "is_declined":false,
-        "number_declined_days":0,
-        "foreign_transaction":false,
-        "high_risk_countries":false,
-        "daily_chbk_avg_amt": 718,
-        "sixm_avg_chbk_amt": 175,
-        "sixm_chbk_freq": 5
-    
-    
-        
+  "merchant_id":3799132406,
+  "avg_amount_days":780.3223403,
+  "amount":39016.11702,
+  "is_declined":false,
+  "number_declined_days":5,
+  "foreign_transaction":true,
+  "high_risk_countries":true,
+  "daily_chbk_avg_amt": 0,
+  "sixm_avg_chbk_amt": 0,
+  "sixm_chbk_freq": 0
 }
  const phising =  async (data) =>{
 

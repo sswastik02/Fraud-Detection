@@ -12,7 +12,7 @@ import {setUserDeatils} from '../redux/actions/userAction'
 
 const HomeScreen = () => {
   const dispatch = useDispatch()
-  const url = 'http://shadetreetechnology.com/V4/validation/a111aedc8ae390eabcfa130e041a10a4'
+  const url = 'https://www.google.com/'
   const getProducts = useSelector(state => state.getProducts)
   const {products, loading, error} = getProducts
 
@@ -67,7 +67,7 @@ const HomeScreen = () => {
         <div>
           AD 
           <a onClick={handleClick}>
-             <img src='https://www.wordstream.com/wp-content/uploads/2021/07/persuasive-ads-coca-cola.jpg'/>
+             <img src='https://static-prod.adweek.com/wp-content/uploads/2019/12/hulu-cheez-it-ad-CONTENT-2019.jpg'/>
           </a>
         </div>
       </div>

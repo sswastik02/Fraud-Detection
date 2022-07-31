@@ -27,23 +27,23 @@ const getAadharInfo = async (req, res) => {
                 userData.findById(req.params.id)
                 .then((user) => {
                     user.aadharURL = result.url;
-                    console.log(user.email)
-                    console.log(result.url)
-                    console.log(user.aadharURL)
+                    // console.log(user.email)
+                    // console.log(result.url)
+                    // console.log(user.aadharURL)
                     let data = {
                       url: user.aadharURL
                     }
-                    console.log(data)
+                    // console.log(data)
                     urlaadhar(data)
                     .then((resp)=>{
                       console.log(resp)
                       user.save()  
                       .then((user) =>{
                         res.statusCode = 200;
-                        res.json(user);
+                        res.json(resp);
                       },
                       (err) => next(err))
-                      .catch((err) => next(err));
+                      .catch((err) =>  console.log(err));
                       })
                     })
                     
@@ -71,12 +71,12 @@ const urlaadhar =  async (data) =>{
       }
   }).then( (result) =>{
       data123 = result
- 
+      console.log(data123.data)
       
   }).catch((err) =>{
       console.log(err)
   })
-  return data123
+  return data123.data
 } 
 
 module.exports =  getAadharInfo 
